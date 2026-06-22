@@ -43,6 +43,66 @@
 
     </form>
 
+
+    <!-- Posts Section -->
+
+<div class="mt-10">
+
+```
+<h2 class="text-2xl font-semibold mb-5">
+    Your Posts
+</h2>
+
+<% if(user.posts.length > 0) { %>
+
+    <% user.posts.slice().reverse().forEach(post => { %>
+
+        <div class="bg-zinc-800 p-5 rounded-md mb-4">
+
+            <p class="text-white mb-3">
+                <%= post.content %>
+            </p>
+
+            <p class="text-zinc-400 text-sm mb-4">
+                <%= post.date.toDateString() %>
+            </p>
+
+            <div class="flex gap-3">
+
+ <a
+                    class="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-md text-sm"
+                    href="/like/<%= post._id %>">
+                <%= post.likes.indexOf(user._id) === -1 ? "UnLike" : "like" %>
+                    
+                </a>
+              
+
+                <a
+                    class="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 rounded-md text-sm"
+                    
+                    href="/edit/<%= post._id %>"
+                    >
+                    Edit
+        </a>
+
+            </div>
+
+        </div>
+
+    <% }) %>
+
+<% } else { %>
+
+    <div class="bg-zinc-800 p-4 rounded-md">
+        No posts yet.
+    </div>
+
+<% } %>
+```
+
+</div>
+
+
    
 
 </body>
