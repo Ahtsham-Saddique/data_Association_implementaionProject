@@ -23,10 +23,44 @@ app.get("/Profile" , isLoggedIn , async (req,res) =>
  let   email  = req.user.email;
 
         // Check if user already exists
-        let user = await userModel.findOne({ email });
+        let user = await userModel.findOne({ email }).populate("posts");
     res.render("Profile",{user});
 })
 
+app.get("/like/:id", isLoggedIn, async (req, res) => {
+
+    let post = await postModel.findById(req.params.id);
+
+    let userId = req.user.userid;
+
+    if (!post.likes.includes(userId)) {
+
+        post.likes.push(userId);
+
+    } else {
+
+        post.likes.pull(userId);
+
+    }
+
+    await post.save();
+
+    res.redirect("/Profile");
+});
+
+
+
+
+
+
+app.get("/edit/:id", isLoggedIn, async (req, res) => {
+
+    let post = await postModel.findOneAndUpdate({_id : req.params.id },{content:req.body.content});
+
+     res.redirect('profile');
+
+
+});
 
 
 
