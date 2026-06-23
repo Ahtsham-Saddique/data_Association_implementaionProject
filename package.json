@@ -14,18 +14,9 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
+    "dev": "nodemon app.js",        // ← Added for local development
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Ahtsham-Saddique/data_Association_implementaionProject.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/Ahtsham-Saddique/data_Association_implementaionProject/issues"
-  },
-  "homepage": "https://github.com/Ahtsham-Saddique/data_Association_implementaionProject#readme"
+  "repository": { ... },
+  "type": "commonjs"
 }
