@@ -1,9 +1,31 @@
 {
   "dependencies": {
     "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
     "ejs": "^6.0.1",
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
-    "mongoose": "^9.7.1"
-  }
+    "mongoose": "^9.7.1",
+    "multer": "^2.2.0"
+  },
+  "name": "data_association_proj",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ahtsham-Saddique/data_Association_implementaionProject.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Ahtsham-Saddique/data_Association_implementaionProject/issues"
+  },
+  "homepage": "https://github.com/Ahtsham-Saddique/data_Association_implementaionProject#readme"
 }

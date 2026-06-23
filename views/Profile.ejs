@@ -16,11 +16,18 @@
     </div>
 
     <!-- Greeting -->
-    <h1 class="text-3xl mb-2">
+
+    <div class="flex item-start gap-3">
+        <div class ="w-20 h-20 rounded-md">
+            <img class=" w-full h-full object-coverj" src="/images/uploads/<%= user.profilepic %>" alt="">
+        </div>
+        <h1 class="text-3xl mb-2">
         <span class="font-light">Hello</span>, <%= user.name %>
     </h1>
 
-    <p class="text-zinc-400 mb-6">
+    </div>
+    
+    <p class="text-zinc-400 mb-6  mt-3">
         Create and manage your posts
     </p>
 

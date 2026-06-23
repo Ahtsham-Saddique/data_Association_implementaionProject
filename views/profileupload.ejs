@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create_Account</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body>
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload File</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-zinc-900">
+
+```
+<div class="min-h-screen flex items-center justify-center px-4">
+
+    <div class="w-full max-w-md bg-zinc-800 rounded-3xl shadow-2xl p-8">
+
+        <!-- Heading -->
+        <h1 class="text-3xl font-bold text-white text-center mb-2">
+            Upload profile picture
+        </h1>
+
+        <p class="text-zinc-400 text-center mb-8">
+            Select an image and upload it
+        </p>
+
+        <!-- Form -->
+        <form
+            action="/upload"
+            method="POST"
+            enctype="multipart/form-data"
+            class="space-y-6"
+        >
+
+            <!-- File Input -->
+            <div>
+                <label
+                    for="image"
+                    class="block text-zinc-300 font-medium mb-3"
+                >
+                    Choose Image
+                </label>
+
+                <input
+                    id="image"
+                    type="file"
+                    name="image"
+                    accept="image/*"
+                    required
+                    class="block w-full text-sm text-zinc-300
+                           file:mr-4
+                           file:py-3
+                           file:px-4
+                           file:rounded-xl
+                           file:border-0
+                           file:bg-blue-600
+                           file:text-white
+                           file:font-semibold
+                           file:cursor-pointer
+                           hover:file:bg-blue-700"
+                >
+            </div>
+
+            <!-- Upload Button -->
+            <button
+                type="submit"
+                class="w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-all duration-200 cursor-pointer"
+            >
+                Upload Image
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+```
+
+</body>
+</html>
+
+</body>
+</html>
