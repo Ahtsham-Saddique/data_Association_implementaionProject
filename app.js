@@ -59,7 +59,7 @@ app.post("/post", isLoggedIn, async (req, res) => {
         });
         user.posts.push(post._id);
         await user.save();
-        res.redirect("/profile");
+        res.redirect("/Profile");
     } catch (err) {
         console.log(err);
         res.status(500).send("Something went wrong");
@@ -129,7 +129,7 @@ app.post("/register", async (req, res) => {
                 );
 
                 res.cookie("token", token);
-                res.send("Registered Successfully");
+                res.redirect("/Profile");
             });
         });
     } catch (err) {
@@ -157,10 +157,36 @@ function isLoggedIn(req, res, next) {
     }
 }
 
+app.get("/edit/:id", isLoggedIn, async (req, res) => {
+    try {
+        const post = await postModel.findById(req.params.id);
+        if (!post) return res.status(404).send("Post not found");
+        res.render("edit", { post });
+    } catch (err) {
+        console.log(err);
+        res.status(500).send("Something went wrong");
+    }
+});
+
+app.post("/update/:id", isLoggedIn, async (req, res) => {
+    try {
+        const { content } = req.body;
+        await postModel.findByIdAndUpdate(
+            req.params.id,
+            { content: content },
+            { new: false }
+        );
+        res.redirect("/Profile");
+    } catch (err) {
+        console.log(err);
+        res.status(500).send("Something went wrong");
+    }
+});
+
 // Remove app.listen() for Vercel
-// app.listen(3000, () => {
-//     console.log("Server is running on port 3000");
-// });
+app.listen(3000, () => {
+    console.log("Server is running on port 3000");
+});
 
 // Export for Vercel
 module.exports = app;
