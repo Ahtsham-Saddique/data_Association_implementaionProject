@@ -1,4 +1,12 @@
 {
+  "name": "data_association_proj",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
   "dependencies": {
     "bcrypt": "^6.0.0",
     "cookie-parser": "^1.4.7",
@@ -8,15 +16,5 @@
     "mongoose": "^9.7.1",
     "multer": "^2.2.0"
   },
-  "name": "data_association_proj",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
-  "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js",        // ← Added for local development
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": { ... },
   "type": "commonjs"
 }
