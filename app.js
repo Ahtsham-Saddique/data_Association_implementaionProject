@@ -31,16 +31,27 @@ app.get("/Profile", isLoggedIn, async (req, res) => {
 });
 
 app.get("/like/:id", isLoggedIn, async (req, res) => {
-    let post = await postModel.findById(req.params.id);
-    let userId = req.user.userid;
-    if (!post.likes.includes(userId)) {
-        post.likes.push(userId);
-    } else {
-        post.likes.pull(userId);
+    try {
+        const post = await postModel.findById(req.params.id);
+        if (!post) return res.status(404).send("Post not found");
+
+        const userId = req.user.userid;
+
+        const alreadyLiked = post.likes.some((id) => id.toString() === userId.toString());
+        if (alreadyLiked) {
+            post.likes = post.likes.filter((id) => id.toString() !== userId.toString());
+        } else {
+            post.likes.push(userId);
+        }
+
+        await post.save();
+        res.redirect("/Profile");
+    } catch (err) {
+        console.log(err);
+        res.status(500).send("Something went wrong");
     }
-    await post.save();
-    res.redirect("/Profile");
 });
+
 
 app.post("/upload", isLoggedIn, upload.single("image"), async (req, res) => {
     let user = await userModel.findOne({ email: req.user.email });
@@ -161,6 +172,11 @@ app.get("/edit/:id", isLoggedIn, async (req, res) => {
     try {
         const post = await postModel.findById(req.params.id);
         if (!post) return res.status(404).send("Post not found");
+
+        if (post.user.toString() !== req.user.userid.toString()) {
+            return res.status(403).send("Forbidden");
+        }
+
         res.render("edit", { post });
     } catch (err) {
         console.log(err);
@@ -168,20 +184,28 @@ app.get("/edit/:id", isLoggedIn, async (req, res) => {
     }
 });
 
+
 app.post("/update/:id", isLoggedIn, async (req, res) => {
     try {
         const { content } = req.body;
-        await postModel.findByIdAndUpdate(
-            req.params.id,
-            { content: content },
-            { new: false }
-        );
+
+        const post = await postModel.findById(req.params.id);
+        if (!post) return res.status(404).send("Post not found");
+
+        if (post.user.toString() !== req.user.userid.toString()) {
+            return res.status(403).send("Forbidden");
+        }
+
+        post.content = content;
+        await post.save();
+
         res.redirect("/Profile");
     } catch (err) {
         console.log(err);
         res.status(500).send("Something went wrong");
     }
 });
+
 
 // Remove app.listen() for Vercel
 app.listen(3000, () => {

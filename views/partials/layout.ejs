@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title || "App" %></title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="bg-zinc-900 text-white min-h-screen">
+    <div class="min-h-screen">
+      <header class="border-b border-zinc-800/60">
+        <div class="max-w-5xl mx-auto px-5 py-4 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-blue-600/20 border border-blue-600/40 flex items-center justify-center">
+              <span class="text-blue-200 font-bold">DA</span>
+            </div>
+            <div>
+              <p class="text-sm text-zinc-400 leading-tight">Data Association</p>
+              <p class="text-base font-semibold leading-tight">Social Profile</p>
+            </div>
+          </div>
+
+          <nav class="flex items-center gap-2">
+            <% if (user) { %>
+              <a href="/Profile" class="px-3 py-2 rounded-lg text-sm font-medium bg-zinc-800/60 hover:bg-zinc-800 border border-zinc-700/60">Profile</a>
+              <a href="/logout" class="px-3 py-2 rounded-lg text-sm font-medium bg-red-500/90 hover:bg-red-500">Logout</a>
+            <% } else { %>
+              <a href="/login" class="px-3 py-2 rounded-lg text-sm font-medium bg-blue-600/90 hover:bg-blue-600">Login</a>
+            <% } %>
+          </nav>
+        </div>
+      </header>
+
+      <main class="max-w-5xl mx-auto px-5 py-8">
+        <%- body %>
+      </main>
+
+      <footer class="max-w-5xl mx-auto px-5 pb-10">
+        <p class="text-xs text-zinc-500">© <%= new Date().getFullYear() %> Data Association • Built with Express + EJS</p>
+      </footer>
+    </div>
+  </body>
+</html>
+
